@@ -2,6 +2,7 @@ import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { Bio } from "@/components/bio";
 import { Shows } from "@/components/shows";
+import { Media } from "@/components/media";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 
@@ -18,6 +19,7 @@ export default function EnglishPage() {
       <Hero lang="en" />
       <Bio lang="en" />
       <Shows lang="en" />
+      <Media lang="en" />
       <Contact lang="en" />
       <Footer lang="en" />
     </main>

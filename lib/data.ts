@@ -9,6 +9,7 @@ export const navItems: NavItem[] = [
   { key: "home", href: "#inicio" },
   { key: "bio", href: "#bio" },
   { key: "shows", href: "#shows" },
+  { key: "media", href: "#media" },
   { key: "contact", href: "#contacto" },
 ];
 
@@ -18,6 +19,7 @@ export const translations = {
       home: "Inicio",
       bio: "Bio",
       shows: "Shows",
+      media: "Media",
       contact: "Contacto",
     },
     hero: {
@@ -44,6 +46,10 @@ export const translations = {
       watchVideo: "Ver video",
       current: "Actual",
     },
+    media: {
+      heading: "MEDIA",
+      allVideos: "All videos on YouTube",
+    },
     contact: {
       heading: "BE IN TOUCH",
       cta: "Contact",
@@ -58,6 +64,7 @@ export const translations = {
       home: "Home",
       bio: "Bio",
       shows: "Shows",
+      media: "Media",
       contact: "Contact",
     },
     hero: {
@@ -84,6 +91,10 @@ export const translations = {
       watchVideo: "Watch video",
       current: "Current",
     },
+    media: {
+      heading: "MEDIA",
+      allVideos: "All videos on YouTube",
+    },
     contact: {
       heading: "BE IN TOUCH",
       cta: "Contact",
@@ -94,6 +105,16 @@ export const translations = {
     },
   },
 };
+
+export interface MediaItem {
+  slug: string;
+  titleEs: string;
+  titleEn: string;
+  subtitleEs: string;
+  subtitleEn: string;
+  videoUrl: string;
+  thumbnail: string;
+}
 
 export interface Show {
   slug: string;
@@ -452,6 +473,81 @@ export const shows: Show[] = [
     descEn:
       "Flora and Nico were part of the Argentine National Gymnastics Team for over 10 years, representing the country in artistic and rhythmic gymnastics respectively. Throughout their athletic careers they competed nationally and internationally, establishing themselves among Argentina's top athletes. Both ranked within the national top 5 and competed in major events such as the ODESUR Games, the Pan American Games, the South American Games and various international tournaments. Their story began at the National High-Performance Sports Centre (CeNARD), where they met when Flora was 15 and Nico 17, training within the Argentine high-performance system. That athletic foundation marked the beginning of a journey that would later evolve into the world of contemporary circus, high-level artistic performance and the creation of Duo Rings™.",
     images: [],
+  },
+];
+
+export const mediaItems: MediaItem[] = [
+  {
+    slug: "gala-leipzig-2025",
+    titleEs: "Gala Leipzig 2025",
+    titleEn: "Gala Leipzig 2025",
+    subtitleEs: "Leipzig, Germany - 2025",
+    subtitleEn: "Leipzig, Germany - 2025",
+    videoUrl: "https://www.youtube.com/watch?v=vC-eZk9rZb0&t=5s",
+    thumbnail: "/media/shows/gala-1.jpg",
+  },
+  {
+    slug: "spirit-show-2022",
+    titleEs: "Spirit Show",
+    titleEn: "Spirit Show",
+    subtitleEs: "Europe - 2022",
+    subtitleEn: "Europe - 2022",
+    videoUrl: "https://www.youtube.com/watch?v=u7k4me61WEw&t=1s",
+    thumbnail: "/media/shows/spirit-1.jpg",
+  },
+  {
+    slug: "flic-flac-2023",
+    titleEs: "Flic Flac",
+    titleEn: "Flic Flac",
+    subtitleEs: "Germany - 2023",
+    subtitleEn: "Germany - 2023",
+    videoUrl: "https://www.youtube.com/watch?v=Hi4cWDQ8LXM&t=22s",
+    thumbnail: "/media/shows/flicflac-1.jpg",
+  },
+  {
+    slug: "chateau-garrigue-2022",
+    titleEs: "Chateau Garrigue",
+    titleEn: "Chateau Garrigue",
+    subtitleEs: "France - 2022",
+    subtitleEn: "France - 2022",
+    videoUrl: "https://www.youtube.com/watch?v=jgwnfJ6yS1g",
+    thumbnail: "/media/shows/chateau-1.jpg",
+  },
+  {
+    slug: "rising-symphony-2023",
+    titleEs: "Rising Symphony",
+    titleEn: "Rising Symphony",
+    subtitleEs: "2023",
+    subtitleEn: "2023",
+    videoUrl: "https://www.youtube.com/watch?v=ZvVJ2S-U20U",
+    thumbnail: "/media/shows/rising-1.jpg",
+  },
+  {
+    slug: "cirque-joya",
+    titleEs: "Cirque Joyà",
+    titleEn: "Cirque Joyà",
+    subtitleEs: "Cirque du Soleil - Mexico",
+    subtitleEn: "Cirque du Soleil - Mexico",
+    videoUrl: "https://www.youtube.com/watch?v=9AAtGKfrBEM",
+    thumbnail: "/media/shows/septimo-1.jpg",
+  },
+  {
+    slug: "salieri-2023",
+    titleEs: "Salieri",
+    titleEn: "Salieri",
+    subtitleEs: "2023",
+    subtitleEn: "2023",
+    videoUrl: "https://www.youtube.com/watch?v=UHD3IqBFGE8",
+    thumbnail: "/media/shows/salieri-1.jpg",
+  },
+  {
+    slug: "heilbronner-2024",
+    titleEs: "Heilbronner Zaubershow",
+    titleEn: "Heilbronner Zaubershow",
+    subtitleEs: "Germany - 2024",
+    subtitleEn: "Germany - 2024",
+    videoUrl: "https://www.youtube.com/watch?v=4-6aAAe0QEc",
+    thumbnail: "/media/shows/heilbronner-1.jpg",
   },
 ];
 
