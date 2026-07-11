@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Duo Rings — Landing Page v2
 
-## Getting Started
+Landing page oficial de **Duo Rings™**, el dúo de anillas aéreas formado por Flora Aracama y Nico Busso.
 
-First, run the development server:
+Construida con **Next.js 16**, **Tailwind CSS v4** y **shadcn/ui**.
+
+## Estructura de idiomas
+
+- `/` redirige a `/es`
+- `/es` — versión en español
+- `/en` — versión en inglés
+
+Los idiomas se manejan con páginas HTML estáticas independientes, sin librerías de i18n.
+
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev      # servidor de desarrollo en http://localhost:3000
+npm run build    # build de producción estático (output en /dist)
+npm run start    # servidor de producción (requiere build previo)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Build estático
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+El proyecto está configurado para exportación estática:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```ts
+// next.config.ts
+output: "export"
+distDir: "dist"
+```
 
-## Learn More
+## Secciones
 
-To learn more about Next.js, take a look at the following resources:
+- **Hero** con video de fondo y marquee de partners
+- **Bio** con imagen animada y texto expandible
+- **Shows** con timeline interactivo, carruseles de imágenes y links a videos
+- **Contacto** con mailto
+- **Footer** con redes sociales y link a The Rings Method
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tecnologías
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 16 (App Router)
+- React 19
+- Tailwind CSS 4
+- shadcn/ui
+- Framer Motion
+- TypeScript
