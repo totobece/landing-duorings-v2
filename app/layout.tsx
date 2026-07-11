@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -23,8 +24,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${montserrat.variable} antialiased`} style={{ fontFamily: "var(--font-montserrat), Arial, sans-serif" }}>
-      <body className="min-h-screen">{children}</body>
+    <html lang="es" suppressHydrationWarning>
+      <body
+        className={`${montserrat.variable} antialiased`}
+        style={{ fontFamily: "var(--font-montserrat), Arial, sans-serif" }}
+      >
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const saved = localStorage.getItem('duorings-theme');
+                if (saved === 'light' || saved === 'dark') {
+                  document.documentElement.setAttribute('data-theme', saved);
+                } else {
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                }
+              })();
+            `,
+          }}
+        />
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

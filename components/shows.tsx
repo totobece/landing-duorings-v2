@@ -43,8 +43,8 @@ function ImageCarousel({ images }: { images: string[] }) {
               style={{
                 background:
                   i === index
-                    ? "var(--white)"
-                    : "rgba(245,240,235,0.35)",
+                    ? "var(--text)"
+                    : "var(--text-muted2)",
               }}
             />
           ))}
@@ -76,12 +76,12 @@ function ShowPanel({
     >
       <div
         className="mt-4 p-5 rounded-lg border"
-        style={{ background: "var(--card)", borderColor: "var(--border)" }}
+        style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}
       >
         <ImageCarousel images={images} />
         <p
           className="text-sm leading-relaxed font-light mb-4"
-          style={{ color: "var(--muted)" }}
+          style={{ color: "var(--text-muted)" }}
         >
           {desc}
         </p>
@@ -90,7 +90,11 @@ function ShowPanel({
             href={videoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.15em] uppercase px-5 py-2.5 rounded border border-[var(--pink)] text-[var(--pink)] hover:bg-[var(--pink)] hover:text-black transition-all duration-200"
+            className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.15em] uppercase px-5 py-2.5 rounded border transition-all duration-200 hover:bg-[var(--pink)] hover:text-[var(--black)]"
+            style={{
+              borderColor: "var(--pink)",
+              color: "var(--pink)",
+            }}
           >
             <svg
               width="14"
@@ -142,7 +146,7 @@ function TimelineItem({
           glow: "0 0 16px 4px rgba(255,107,157,0.6)",
         }
       : {
-          dot: "bg-[var(--muted)] border-[var(--border)]",
+          dot: "bg-[var(--text-muted)] border-[var(--border)]",
           glow: "none",
         };
 
@@ -176,7 +180,7 @@ function TimelineItem({
                 </span>
                 <h3
                   className="text-sm font-bold uppercase tracking-wide group-hover:text-[var(--pink)] transition-colors duration-200 flex items-center justify-end gap-2"
-                  style={{ color: "var(--white)" }}
+                  style={{ color: "var(--text)" }}
                 >
                   {title}
                   <span className="opacity-0 group-hover:opacity-60 transition-opacity duration-200 text-[var(--pink)] text-xs font-light">
@@ -185,7 +189,7 @@ function TimelineItem({
                 </h3>
                 <span
                   className="text-[11px] font-light block mt-0.5"
-                  style={{ color: "var(--muted)" }}
+                  style={{ color: "var(--text-muted)" }}
                 >
                   {location}
                 </span>
@@ -236,7 +240,7 @@ function TimelineItem({
                 </span>
                 <h3
                   className="text-sm font-bold uppercase tracking-wide group-hover:text-[var(--pink)] transition-colors duration-200 flex items-center gap-2"
-                  style={{ color: "var(--white)" }}
+                  style={{ color: "var(--text)" }}
                 >
                   {title}
                   <span className="opacity-0 group-hover:opacity-60 transition-opacity duration-200 text-[var(--pink)] text-xs font-light">
@@ -245,7 +249,7 @@ function TimelineItem({
                 </h3>
                 <span
                   className="text-[11px] font-light block mt-0.5"
-                  style={{ color: "var(--muted)" }}
+                  style={{ color: "var(--text-muted)" }}
                 >
                   {location}
                 </span>
@@ -297,7 +301,7 @@ function TimelineItem({
             </span>
             <h3
               className="text-sm font-bold uppercase tracking-wide group-hover:text-[var(--pink)] transition-colors duration-200 flex items-center gap-2"
-              style={{ color: "var(--white)" }}
+              style={{ color: "var(--text)" }}
             >
               {title}
               <span className="opacity-0 group-hover:opacity-60 transition-opacity duration-200 text-[var(--pink)] text-xs">
@@ -306,7 +310,7 @@ function TimelineItem({
             </h3>
             <span
               className="text-[11px] font-light block mt-0.5"
-              style={{ color: "var(--muted)" }}
+              style={{ color: "var(--text-muted)" }}
             >
               {location}
             </span>

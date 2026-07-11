@@ -12,7 +12,7 @@ export function Media({ lang }: MediaProps) {
   const t = translations[lang];
 
   return (
-    <section id="media" className="py-24 md:py-32 px-6 bg-[var(--black)]">
+    <section id="media" className="py-24 md:py-32 px-6" style={{ background: "var(--bg)" }}>
       <div className="max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -63,13 +63,13 @@ export function Media({ lang }: MediaProps) {
                 </div>
                 <h3
                   className="text-xs font-bold uppercase tracking-wide mb-1 transition-colors duration-200 group-hover:text-[var(--pink)]"
-                  style={{ color: "var(--white)" }}
+                  style={{ color: "var(--text)" }}
                 >
                   {title}
                 </h3>
                 <p
                   className="text-[10px] tracking-[0.15em] uppercase font-light"
-                  style={{ color: "var(--muted)" }}
+                  style={{ color: "var(--text-muted)" }}
                 >
                   {subtitle}
                 </p>
@@ -90,7 +90,7 @@ export function Media({ lang }: MediaProps) {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-[10px] tracking-[0.25em] uppercase font-semibold transition-colors duration-200 hover:text-[var(--pink)]"
-            style={{ color: "var(--muted)" }}
+            style={{ color: "var(--text-muted)" }}
           >
             <svg
               width="14"

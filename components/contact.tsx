@@ -11,7 +11,7 @@ export function Contact({ lang }: ContactProps) {
   const t = translations[lang];
 
   return (
-    <section id="contacto" className="py-24 md:py-32 px-6">
+    <section id="contacto" className="py-24 md:py-32 px-6" style={{ background: "var(--bg)" }}>
       <div className="max-w-2xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -21,7 +21,7 @@ export function Contact({ lang }: ContactProps) {
           className="font-black uppercase tracking-[0.25em] mb-10"
           style={{
             fontSize: "clamp(2rem, 4vw, 3.5rem)",
-            color: "var(--white)",
+            color: "var(--text)",
           }}
         >
           {t.contact.heading}
@@ -33,7 +33,11 @@ export function Contact({ lang }: ContactProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="inline-block px-10 py-4 text-xs font-bold uppercase tracking-[0.3em] border border-[var(--pink)] text-[var(--pink)] hover:bg-[var(--pink)] hover:text-black transition-all duration-300 rounded-sm"
+          className="inline-block px-10 py-4 text-xs font-bold uppercase tracking-[0.3em] border transition-all duration-300 rounded-sm hover:bg-[var(--pink)] hover:text-[var(--black)]"
+          style={{
+            borderColor: "var(--pink)",
+            color: "var(--pink)",
+          }}
         >
           {t.contact.cta}
         </motion.a>

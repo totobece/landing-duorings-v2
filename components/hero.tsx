@@ -47,7 +47,7 @@ export function Hero({ lang }: HeroProps) {
               className="font-semibold uppercase tracking-[0.18em] mb-5 w-full text-center"
               style={{
                 fontSize: "clamp(0.5rem, 1vw, 0.78rem)",
-                color: "var(--muted)",
+                color: "rgba(245,240,235,0.65)",
               }}
             >
               {t.hero.subtitle}

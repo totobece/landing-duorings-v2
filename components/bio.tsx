@@ -62,7 +62,7 @@ export function Bio({ lang }: BioProps) {
               <p
                 key={idx}
                 className="text-sm md:text-base leading-relaxed font-light"
-                style={{ color: "var(--muted)" }}
+                style={{ color: "var(--text-muted)" }}
               >
                 {text}
               </p>
@@ -83,7 +83,7 @@ export function Bio({ lang }: BioProps) {
                     <p
                       key={idx}
                       className="text-sm md:text-base leading-relaxed font-light"
-                      style={{ color: "var(--muted)" }}
+                      style={{ color: "var(--text-muted)" }}
                     >
                       {text}
                     </p>
@@ -95,8 +95,8 @@ export function Bio({ lang }: BioProps) {
 
           <button
             onClick={() => setExpanded(!expanded)}
-            className="mt-8 self-start text-xs font-semibold tracking-[0.2em] uppercase border border-[var(--border)] px-6 py-3 rounded transition-all duration-200 hover:border-[var(--pink)] hover:text-[var(--pink)]"
-            style={{ color: "var(--white)" }}
+            className="mt-8 self-start text-xs font-semibold tracking-[0.2em] uppercase border px-6 py-3 rounded transition-all duration-200 hover:border-[var(--pink)] hover:text-[var(--pink)]"
+            style={{ color: "var(--text)", borderColor: "var(--border)" }}
           >
             {expanded ? t.bio.readLess : t.bio.readMore}
           </button>
