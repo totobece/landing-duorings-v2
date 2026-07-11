@@ -38,19 +38,18 @@ export function Navbar({ lang }: NavbarProps) {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "backdrop-blur-sm border-b"
+          ? "backdrop-blur-sm border-b border-white/[0.07]"
           : "bg-transparent"
       }`}
       style={{
-        background: scrolled ? "var(--nav-bg-scrolled)" : "var(--nav-bg)",
-        borderColor: "var(--border)",
+        background: scrolled ? "rgba(10,10,10,0.95)" : "rgba(10,10,10,0.6)",
       }}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <button
           onClick={() => scrollTo("#inicio")}
           className="font-black text-sm tracking-[0.2em] uppercase hover:text-[var(--pink)] transition-colors duration-200"
-          style={{ color: "var(--text)" }}
+          style={{ color: "#f5f0eb" }}
         >
           DUO RINGS™
         </button>
@@ -61,7 +60,7 @@ export function Navbar({ lang }: NavbarProps) {
               key={item.key}
               onClick={() => scrollTo(item.href)}
               className="text-xs tracking-[0.15em] uppercase transition-colors duration-200 font-semibold hover:text-[var(--pink)]"
-              style={{ color: "var(--text-muted)" }}
+              style={{ color: "rgba(245,240,235,0.55)" }}
             >
               {t.nav[item.key as keyof typeof t.nav]}
             </button>
@@ -73,8 +72,8 @@ export function Navbar({ lang }: NavbarProps) {
             onClick={switchLang}
             className="text-xs tracking-[0.15em] uppercase font-semibold transition-colors duration-200 hover:text-[var(--pink)] border rounded px-3 py-1.5"
             style={{
-              color: "var(--text-muted)",
-              borderColor: "var(--border)",
+              color: "rgba(245,240,235,0.55)",
+              borderColor: "rgba(255,255,255,0.07)",
             }}
           >
             {otherLang.toUpperCase()}
@@ -84,8 +83,8 @@ export function Navbar({ lang }: NavbarProps) {
             onClick={toggleTheme}
             className="p-2 rounded border transition-colors duration-200 hover:text-[var(--pink)]"
             style={{
-              color: "var(--text-muted)",
-              borderColor: "var(--border)",
+              color: "rgba(245,240,235,0.55)",
+              borderColor: "rgba(255,255,255,0.07)",
             }}
             aria-label="Toggle theme"
           >
