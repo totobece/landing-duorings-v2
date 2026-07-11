@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Play } from "lucide-react";
 import { mediaItems, translations, Lang } from "@/lib/data";
 
 interface MediaProps {
@@ -56,15 +57,7 @@ export function Media({ lang }: MediaProps) {
                   <div className="absolute inset-0 bg-black/30 transition-colors duration-300 group-hover:bg-black/20" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="text-white ml-1"
-                      >
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
+                      <Play className="w-5 h-5 text-white fill-white" />
                     </div>
                   </div>
                 </div>
