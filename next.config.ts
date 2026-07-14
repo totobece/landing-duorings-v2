@@ -1,7 +1,20 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* standard Next.js server mode for Railway */
+  output: "standalone",
+  images: {
+    unoptimized: true,
+  },
+  trailingSlash: true,
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/es",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
