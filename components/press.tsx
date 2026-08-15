@@ -139,7 +139,8 @@ export function Press({ lang }: PressProps) {
   };
 
   const list = (copy: number) => (
-    <div aria-hidden={copy === 1 ? true : undefined}>
+    // La segunda copia es sólo para el loop visual: fuera del foco y del lector
+    <div aria-hidden={copy === 1 ? true : undefined} inert={copy === 1}>
       {pressItems.map((item) => (
         <PressRow
           key={`${copy}-${item.url}`}
