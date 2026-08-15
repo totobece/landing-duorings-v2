@@ -210,6 +210,63 @@
   animation: 6s ease-in-out infinite float;
 }
 
+/* ---------- press ---------- */
+.press-scroller {
+  height: clamp(380px, 62vh, 560px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior: contain;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 56px,
+    #000 calc(100% - 56px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 56px,
+    #000 calc(100% - 56px),
+    transparent 100%
+  );
+}
+
+.press-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.press-row:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(var(--accent-rgb), 0.07),
+    transparent 65%
+  );
+  padding-left: 26px;
+}
+
+@media (min-width: 640px) {
+  .press-row:hover {
+    padding-left: 34px;
+  }
+}
+
+.press-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pink);
+  flex: none;
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.press-row:hover .press-dot {
+  transform: scale(1.5);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.18);
+}
+
 @keyframes bounce-arrow {
   0%,
   100% {

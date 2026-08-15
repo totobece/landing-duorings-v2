@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero";
 import { Bio } from "@/components/bio";
 import { Shows } from "@/components/shows";
 import { Media } from "@/components/media";
+import { Press } from "@/components/press";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 
@@ -20,6 +21,7 @@ export default function SpanishPage() {
       <Bio lang="es" />
       <Shows lang="es" />
       <Media lang="es" />
+      <Press lang="es" />
       <Contact lang="es" />
       <Footer lang="es" />
     </main>

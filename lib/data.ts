@@ -10,6 +10,7 @@ export const navItems: NavItem[] = [
   { key: "bio", href: "#bio" },
   { key: "shows", href: "#shows" },
   { key: "media", href: "#media" },
+  { key: "press", href: "#press" },
   { key: "contact", href: "#contacto" },
 ];
 
@@ -20,6 +21,7 @@ export const translations = {
       bio: "Bio",
       shows: "Shows",
       media: "Media",
+      press: "Prensa",
       contact: "Contacto",
     },
     hero: {
@@ -50,6 +52,16 @@ export const translations = {
       heading: "MEDIA",
       allVideos: "All videos on YouTube",
     },
+    press: {
+      heading: "PRENSA",
+      subtitle: "Notas de prensa de Duo Rings en el mundo.",
+      count: "notas publicadas",
+      categoryArtists: "Athletes · Artists",
+      categoryBusiness: "Business · Startup",
+      pause: "Pausar",
+      play: "Reanudar",
+      hint: "Pasá el cursor para pausar · Clic para abrir la nota",
+    },
     contact: {
       heading: "BE IN TOUCH",
       cta: "Contact",
@@ -65,6 +77,7 @@ export const translations = {
       bio: "Bio",
       shows: "Shows",
       media: "Media",
+      press: "Press",
       contact: "Contact",
     },
     hero: {
@@ -94,6 +107,16 @@ export const translations = {
     media: {
       heading: "MEDIA",
       allVideos: "All videos on YouTube",
+    },
+    press: {
+      heading: "PRESS",
+      subtitle: "Duo Rings press coverage around the world.",
+      count: "features published",
+      categoryArtists: "Athletes · Artists",
+      categoryBusiness: "Business · Startup",
+      pause: "Pause",
+      play: "Resume",
+      hint: "Hover to pause · Click to open the feature",
     },
     contact: {
       heading: "BE IN TOUCH",
