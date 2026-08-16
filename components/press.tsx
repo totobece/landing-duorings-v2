@@ -146,11 +146,11 @@ export function Press({ lang }: PressProps) {
     };
   }, [paused]);
 
-  // Si el usuario sube con la rueda hasta el tope, saltamos a la copia de abajo
+  // Evitar scrollear hacia arriba y perder la primer nota
   const handleScroll = () => {
     const el = scrollerRef.current;
     if (!el) return;
-    if (el.scrollTop <= 0) el.scrollTop = el.scrollHeight / 2 - 1;
+    if (el.scrollTop <= 0) el.scrollTop = 0;
   };
 
   const categoryLabels = {
@@ -239,28 +239,7 @@ export function Press({ lang }: PressProps) {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.25 }}
-          className="mt-6 flex items-center justify-center gap-5"
-        >
-          <button
-            onClick={() => setPaused((p) => !p)}
-            className="inline-flex items-center gap-2 text-[10px] tracking-[0.25em] uppercase font-semibold border rounded-full px-4 py-2 transition-colors duration-200 hover:border-[var(--pink)] hover:text-[var(--pink)]"
-            style={{ color: "var(--text-muted)", borderColor: "var(--border)" }}
-          >
-            {paused ? <Play size={12} /> : <Pause size={12} />}
-            {paused ? t.press.play : t.press.pause}
-          </button>
-          <span
-            className="hidden sm:block text-[10px] tracking-[0.2em] uppercase font-light"
-            style={{ color: "var(--text-muted2)" }}
-          >
-            {t.press.hint}
-          </span>
-        </motion.div>
+
       </div>
     </section>
   );
