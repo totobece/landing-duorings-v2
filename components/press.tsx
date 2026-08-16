@@ -10,7 +10,8 @@ interface PressProps {
   lang: Lang;
 }
 
-const SPEED = 26; // px por segundo
+const SPEED = 20.8; // px por segundo (bajado 20% de 26)
+const INITIAL_DELAY = 2; // segundos antes de arrancar el scroll
 
 function displayUrl(url: string) {
   return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
@@ -88,6 +89,7 @@ export function Press({ lang }: PressProps) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const hoveringRef = useRef(false);
   const [paused, setPaused] = useState(false);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = scrollerRef.current;
@@ -97,12 +99,17 @@ export function Press({ lang }: PressProps) {
     let raf = 0;
     let last = performance.now();
     let visible = false;
+    let elapsed = 0;
+    let started = false;
 
     // Solo se desliza mientras la sección está a la vista
     const io = new IntersectionObserver(
       ([entry]) => {
         visible = entry.isIntersecting;
         last = performance.now();
+        if (visible && !started) {
+          elapsed = 0;
+        }
       },
       { threshold: 0.05 }
     );
@@ -111,11 +118,24 @@ export function Press({ lang }: PressProps) {
     const step = (now: number) => {
       const delta = (now - last) / 1000;
       last = now;
+
       if (visible && !hoveringRef.current) {
-        const half = el.scrollHeight / 2;
-        el.scrollTop += SPEED * delta;
-        if (half > 0 && el.scrollTop >= half) el.scrollTop -= half;
+        elapsed += delta;
+        if (elapsed >= INITIAL_DELAY) {
+          started = true;
+          const half = el.scrollHeight / 2;
+          el.scrollTop += SPEED * delta;
+          if (half > 0 && el.scrollTop >= half) el.scrollTop -= half;
+        }
       }
+
+      if (progressRef.current) {
+        const half = el.scrollHeight / 2;
+        const maxScroll = half > 0 ? half : 1;
+        const pct = Math.min((el.scrollTop / maxScroll) * 100, 100);
+        progressRef.current.style.width = `${pct}%`;
+      }
+
       raf = requestAnimationFrame(step);
     };
 
@@ -178,12 +198,6 @@ export function Press({ lang }: PressProps) {
           >
             {t.press.subtitle}
           </p>
-          <p
-            className="mt-2 text-[10px] tracking-[0.25em] uppercase font-semibold"
-            style={{ color: "var(--text-muted2)" }}
-          >
-            {pressItems.length} {t.press.count}
-          </p>
         </motion.div>
 
         <motion.div
@@ -210,6 +224,18 @@ export function Press({ lang }: PressProps) {
           >
             {list(0)}
             {list(1)}
+          </div>
+
+          {/* Barra indicadora de posición */}
+          <div className="h-[2px] w-full" style={{ background: "var(--border)" }}>
+            <div
+              ref={progressRef}
+              className="h-full transition-none"
+              style={{
+                width: "0%",
+                background: "var(--pink)",
+              }}
+            />
           </div>
         </motion.div>
 
