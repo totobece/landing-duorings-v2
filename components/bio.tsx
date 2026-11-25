@@ -16,7 +16,7 @@ export function Bio({ lang }: BioProps) {
   const hiddenParagraphs = t.bio.paragraphs.slice(3);
 
   return (
-    <section id="bio" className="py-24 md:py-32 px-6 max-w-7xl mx-auto">
+    <section id="bio" className="py-24 md:py-32 px-6 max-w-7xl mx-auto overflow-x-clip">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
