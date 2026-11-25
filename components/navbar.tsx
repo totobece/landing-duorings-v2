@@ -2,18 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Menu, X } from "lucide-react";
 import { navItems, pageLinks, translations, Lang } from "@/lib/data";
 import { useTheme } from "@/components/theme-provider";
 
 interface NavbarProps {
   lang: Lang;
+  /** Página independiente actual, para marcarla en el menú. */
+  currentPage?: "masterclass" | "speakers";
 }
 
-export function Navbar({ lang }: NavbarProps) {
+export function Navbar({ lang, currentPage }: NavbarProps) {
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const t = translations[lang];
   const otherLang = lang === "es" ? "en" : "es";
 
@@ -24,58 +27,74 @@ export function Navbar({ lang }: NavbarProps) {
   }, []);
 
   const scrollTo = (selector: string) => {
+    setMenuOpen(false);
     const el = document.querySelector(selector);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Las páginas independientes no tienen las secciones del home:
+      // se navega al home en el idioma actual y se baja a la sección.
+      router.push(`/${lang}${selector}`);
     }
   };
 
   const switchLang = () => {
+    setMenuOpen(false);
     router.push(`/${otherLang}`);
   };
+
+  const menuBackground = menuOpen
+    ? "rgba(10,10,10,0.98)"
+    : scrolled
+      ? "rgba(10,10,10,0.95)"
+      : "rgba(10,10,10,0.6)";
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || menuOpen
           ? "backdrop-blur-sm border-b border-white/[0.07]"
           : "bg-transparent"
       }`}
-      style={{
-        background: scrolled ? "rgba(10,10,10,0.95)" : "rgba(10,10,10,0.6)",
-      }}
+      style={{ background: menuBackground }}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <button
           onClick={() => scrollTo("#inicio")}
-          className="font-black text-sm tracking-[0.2em] uppercase hover:text-[var(--pink)] transition-colors duration-200"
+          className="font-black text-sm tracking-[0.2em] uppercase hover:text-[var(--pink)] transition-colors duration-200 whitespace-nowrap"
           style={{ color: "#f5f0eb" }}
         >
           DUO RINGS™
         </button>
 
-        <div className="hidden md:flex items-center gap-4 xl:gap-7">
+        <div className="hidden lg:flex items-center gap-4 xl:gap-7">
           {navItems.map((item) => (
             <button
               key={item.key}
               onClick={() => scrollTo(item.href)}
-              className="text-xs tracking-[0.15em] uppercase transition-colors duration-200 font-semibold hover:text-[var(--pink)]"
+              className="text-xs tracking-[0.15em] uppercase transition-colors duration-200 font-semibold hover:text-[var(--pink)] whitespace-nowrap"
               style={{ color: "rgba(245,240,235,0.55)" }}
             >
               {t.nav[item.key as keyof typeof t.nav]}
             </button>
           ))}
 
-          {pageLinks.map((item) => (
-            <a
-              key={item.key}
-              href={item.href}
-              className="hidden lg:inline text-xs tracking-[0.15em] uppercase transition-colors duration-200 font-semibold hover:text-[var(--pink)]"
-              style={{ color: "var(--pink)" }}
-            >
-              {t.nav[item.key as keyof typeof t.nav]}
-            </a>
-          ))}
+          {pageLinks.map((item) => {
+            const active = currentPage === item.key;
+            return (
+              <a
+                key={item.key}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                className={`inline text-xs tracking-[0.15em] uppercase transition-colors duration-200 font-semibold hover:text-[var(--pink)] whitespace-nowrap ${
+                  active ? "underline underline-offset-[6px]" : ""
+                }`}
+                style={{ color: "var(--pink)" }}
+              >
+                {t.nav[item.key as keyof typeof t.nav]}
+              </a>
+            );
+          })}
         </div>
 
         <div className="flex items-center gap-3">
@@ -86,6 +105,7 @@ export function Navbar({ lang }: NavbarProps) {
               color: "rgba(245,240,235,0.55)",
               borderColor: "rgba(255,255,255,0.07)",
             }}
+            aria-label={otherLang === "en" ? "Switch to English" : "Cambiar a español"}
           >
             {otherLang.toUpperCase()}
           </button>
@@ -105,8 +125,71 @@ export function Navbar({ lang }: NavbarProps) {
               <Moon size={16} strokeWidth={2} />
             )}
           </button>
+
+          <button
+            onClick={() => setMenuOpen((open) => !open)}
+            className="lg:hidden p-2 rounded border transition-colors duration-200 hover:text-[var(--pink)]"
+            style={{
+              color: "rgba(245,240,235,0.55)",
+              borderColor: "rgba(255,255,255,0.07)",
+            }}
+            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+          >
+            {menuOpen ? (
+              <X size={16} strokeWidth={2} />
+            ) : (
+              <Menu size={16} strokeWidth={2} />
+            )}
+          </button>
         </div>
       </div>
+
+      {menuOpen && (
+        <div
+          id="mobile-menu"
+          className="lg:hidden border-t max-h-[calc(100vh-4rem)] overflow-y-auto"
+          style={{
+            borderColor: "rgba(255,255,255,0.07)",
+            background: "rgba(10,10,10,0.98)",
+          }}
+        >
+          <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col">
+            {navItems.map((item) => (
+              <button
+                key={item.key}
+                onClick={() => scrollTo(item.href)}
+                className="text-left text-xs tracking-[0.15em] uppercase font-semibold py-3 border-b transition-colors duration-200 hover:text-[var(--pink)]"
+                style={{
+                  color: "rgba(245,240,235,0.7)",
+                  borderColor: "rgba(255,255,255,0.05)",
+                }}
+              >
+                {t.nav[item.key as keyof typeof t.nav]}
+              </button>
+            ))}
+
+            {pageLinks.map((item) => (
+              <a
+                key={item.key}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                aria-current={currentPage === item.key ? "page" : undefined}
+                className={`text-xs tracking-[0.15em] uppercase font-semibold py-3 border-b transition-colors duration-200 hover:text-[var(--pink)] ${
+                  currentPage === item.key ? "underline underline-offset-4" : ""
+                }`}
+                style={{
+                  color: "var(--pink)",
+                  borderColor: "rgba(255,255,255,0.05)",
+                }}
+              >
+                {t.nav[item.key as keyof typeof t.nav]}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

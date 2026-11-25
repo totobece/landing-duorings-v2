@@ -1,0 +1,45 @@
+/* Estilos propios de la landing de Masterclass.
+   El resto son utilidades de Tailwind compiladas por el sitio. */
+
+.masterclass-page {
+  background-color: #000000;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.masterclass-page ::selection {
+  background-color: #ff6b9d;
+  color: #000000;
+}
+
+.masterclass-page .hairline-b {
+  border-bottom: 1px solid #262626;
+}
+
+.masterclass-page .hairline-t {
+  border-top: 1px solid #262626;
+}
+
+.masterclass-page .hairline-all {
+  border: 1px solid #262626;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.masterclass-page .animate-fade-slide {
+  animation: fadeSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* El navbar es fijo: al saltar a una sección, dejar aire arriba. */
+.masterclass-page section[id] {
+  scroll-margin-top: 5rem;
+}

@@ -17,8 +17,10 @@ Los idiomas se manejan con páginas HTML estáticas independientes, sin librerí
 - `/masterclass/` — landing de la Masterclass presencial de The Rings Method.
 - `/speakers/` — página de speakers para contratación.
 
-Se sirven como HTML propio (con su CSS y fuentes) desde `public/masterclass/` y
-`public/speakers/`, ruteadas en `next.config.ts` con rewrites.
+Son rutas de Next que reutilizan el mismo `Navbar` y `Footer` del home. El
+contenido editorial vive en `app/masterclass/content.html` y
+`app/speakers/content.html`; `npm run pages:content` lo convierte en módulos
+(`components/pages/*-html.ts`) y corre automáticamente antes de `dev` y `build`.
 
 ## Scripts
 

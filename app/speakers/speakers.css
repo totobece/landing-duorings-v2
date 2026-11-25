@@ -1,0 +1,18 @@
+/* Estilos propios de la landing de Speakers.
+   El resto son utilidades de Tailwind compiladas por el sitio. */
+
+.speakers-page {
+  background-color: #000000;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.speakers-page ::selection {
+  background-color: #ff66c4;
+  color: #000000;
+}
+
+/* El navbar es fijo: al saltar a una sección, dejar aire arriba. */
+.speakers-page section[id] {
+  scroll-margin-top: 5rem;
+}

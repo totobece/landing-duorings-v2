@@ -1,81 +1,5 @@
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Rings Method — Speakers</title>
-    <meta name="description" content="Flora Aracama y Nico Busso (Duo Rings) como speakers: mente de emprendedor, cuerpo de atleta y alma de artista. Masterclass de alto rendimiento, liderazgo y bienestar.">
-    <link rel="canonical" href="https://www.duo-rings.com/speakers/">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Montserrat -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brandPink: '#ff66c4',
-                        brandDark: '#000000',
-                        brandCard: '#0a0a0a',
-                        brandBorder: '#222222'
-                    },
-                    fontFamily: {
-                        montserrat: ['Montserrat', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #000000;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #000000;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #ff66c4;
-            border-radius: 3px;
-        }
-    </style>
-</head>
-<body class="bg-brandDark text-white antialiased selection:bg-brandPink selection:text-black">
-
-    <!-- Header / Navigation Bar -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-brandBorder transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-full border-2 border-brandPink flex items-center justify-center">
-                    <div class="w-3 h-3 bg-brandPink rounded-full"></div>
-                </div>
-                <span class="font-bold tracking-widest text-xs uppercase">The Rings Method</span>
-            </div>
-            <nav class="hidden md:flex items-center space-x-8 text-xs tracking-widest uppercase font-medium">
-                <a href="#hero" class="hover:text-brandPink transition-colors">Speakers</a>
-                <a href="#audience" class="hover:text-brandPink transition-colors">Destinatarios</a>
-                <a href="#masterclass" class="hover:text-brandPink transition-colors">Masterclass</a>
-                <a href="#trajectory" class="hover:text-brandPink transition-colors">Trayectoria</a>
-                <a href="#whoweare" class="hover:text-brandPink transition-colors">Quiénes Somos</a>
-            </nav>
-            <div>
-                <a href="#whoweare" class="text-xs uppercase tracking-widest px-5 py-2.5 rounded-full border border-brandPink text-brandPink hover:bg-brandPink hover:text-black transition-all font-semibold">
-                    Contratar
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex flex-col justify-center items-center relative px-6 pt-32 pb-20 text-center border-b border-brandBorder overflow-hidden">
+<main>
+<section id="hero" class="min-h-screen flex flex-col justify-center items-center relative px-6 pt-32 pb-20 text-center border-b border-brandBorder overflow-hidden">
         <div class="absolute w-[600px] h-[600px] bg-brandPink/5 rounded-full blur-[140px] pointer-events-none"></div>
 
         <div class="w-full max-w-4xl mx-auto z-10 space-y-8">
@@ -290,7 +214,7 @@
                 <div class="absolute -inset-4 sm:-inset-6 bg-brandPink/10 blur-3xl rounded-full pointer-events-none" aria-hidden="true"></div>
                 <figure class="relative overflow-hidden rounded-2xl border border-brandBorder bg-brandCard">
                     <img
-                        src="masterclassfoto.jpg"
+                        src="/speakers/masterclassfoto.jpg"
                         alt="Flora y Nico dictando una masterclass de The Rings Method"
                         width="1080"
                         height="1350"
@@ -301,17 +225,4 @@
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="py-12 bg-black border-t border-brandBorder px-6 text-center text-xs text-gray-500 font-light space-y-4">
-        <div class="flex items-center justify-center space-x-2">
-            <div class="w-5 h-5 rounded-full border border-brandPink flex items-center justify-center">
-                <div class="w-1.5 h-1.5 bg-brandPink rounded-full"></div>
-            </div>
-            <span class="text-white tracking-widest uppercase font-semibold text-xs">The Rings Method</span>
-        </div>
-        <p>© 2026 The Rings Method. All rights reserved. Speakers Section.</p>
-    </footer>
-
-</body>
-</html>
+</main>

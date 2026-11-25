@@ -4,6 +4,29 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Páginas de Masterclass y Speakers: sus clases viven en HTML propio. */
+@source "./masterclass/content.html";
+@source "./speakers/content.html";
+
+/* Paleta y tracking de las landings de The Rings Method (antes en el
+   tailwind.config del CDN). Se mantienen acá para que el HTML propio
+   compile con el Tailwind del sitio. */
+@theme {
+  --color-pureBlack: #000000;
+  --color-studioWhite: #ffffff;
+  --color-cardDark: #0d0d0d;
+  --color-cardDarkAlt: #141414;
+  --color-borderSubtle: #262626;
+  --color-accentPink: #ff6b9d;
+  --color-accentMagenta: #ff66c4;
+  --color-brandPink: #ff66c4;
+  --color-brandDark: #000000;
+  --color-brandCard: #0a0a0a;
+  --color-brandBorder: #222222;
+  --tracking-ultra: 0.25em;
+  --tracking-editorial: 0.18em;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -161,6 +184,7 @@
     background: var(--bg);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
   }
 }
 
