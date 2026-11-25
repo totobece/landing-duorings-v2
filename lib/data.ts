@@ -14,6 +14,12 @@ export const navItems: NavItem[] = [
   { key: "contact", href: "#contacto" },
 ];
 
+/** Páginas independientes del sitio (no son secciones de la home). */
+export const pageLinks: NavItem[] = [
+  { key: "masterclass", href: "/masterclass/" },
+  { key: "speakers", href: "/speakers/" },
+];
+
 export const translations = {
   es: {
     nav: {
@@ -23,6 +29,8 @@ export const translations = {
       media: "Media",
       press: "Prensa",
       contact: "Contacto",
+      masterclass: "Masterclass",
+      speakers: "Speakers",
     },
     hero: {
       title: "DUO RINGS",
@@ -79,6 +87,8 @@ export const translations = {
       media: "Media",
       press: "Press",
       contact: "Contact",
+      masterclass: "Masterclass",
+      speakers: "Speakers",
     },
     hero: {
       title: "DUO RINGS",

@@ -1,6 +1,6 @@
 "use client";
 
-import { translations, socialLinks, Lang } from "@/lib/data";
+import { translations, socialLinks, pageLinks, Lang } from "@/lib/data";
 
 interface FooterProps {
   lang: Lang;
@@ -21,6 +21,19 @@ export function Footer({ lang }: FooterProps) {
         >
           {t.footer.training}
         </a>
+
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+          {pageLinks.map((link) => (
+            <a
+              key={link.key}
+              href={link.href}
+              className="text-xs tracking-[0.2em] uppercase font-semibold pb-1 border-b transition-colors duration-200 hover:text-[var(--pink)] hover:border-[var(--pink)]"
+              style={{ color: "var(--text-muted)", borderColor: "var(--border)" }}
+            >
+              {t.nav[link.key as keyof typeof t.nav]}
+            </a>
+          ))}
+        </div>
 
         <div className="flex flex-wrap items-center justify-center gap-6">
           {socialLinks.map((link) => (

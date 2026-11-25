@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Sun, Moon } from "lucide-react";
-import { navItems, translations, Lang } from "@/lib/data";
+import { navItems, pageLinks, translations, Lang } from "@/lib/data";
 import { useTheme } from "@/components/theme-provider";
 
 interface NavbarProps {
@@ -54,7 +54,7 @@ export function Navbar({ lang }: NavbarProps) {
           DUO RINGS™
         </button>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-4 xl:gap-7">
           {navItems.map((item) => (
             <button
               key={item.key}
@@ -64,6 +64,17 @@ export function Navbar({ lang }: NavbarProps) {
             >
               {t.nav[item.key as keyof typeof t.nav]}
             </button>
+          ))}
+
+          {pageLinks.map((item) => (
+            <a
+              key={item.key}
+              href={item.href}
+              className="hidden lg:inline text-xs tracking-[0.15em] uppercase transition-colors duration-200 font-semibold hover:text-[var(--pink)]"
+              style={{ color: "var(--pink)" }}
+            >
+              {t.nav[item.key as keyof typeof t.nav]}
+            </a>
           ))}
         </div>
 

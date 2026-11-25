@@ -12,6 +12,14 @@ Construida con **Next.js 16**, **Tailwind CSS v4** y **shadcn/ui**.
 
 Los idiomas se manejan con páginas HTML estáticas independientes, sin librerías de i18n.
 
+## Páginas independientes
+
+- `/masterclass/` — landing de la Masterclass presencial de The Rings Method.
+- `/speakers/` — página de speakers para contratación.
+
+Se sirven como HTML propio (con su CSS y fuentes) desde `public/masterclass/` y
+`public/speakers/`, ruteadas en `next.config.ts` con rewrites.
+
 ## Scripts
 
 ```bash
