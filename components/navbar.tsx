@@ -125,7 +125,9 @@ export function Navbar({ lang, currentPage }: NavbarProps) {
               color: "rgba(245,240,235,0.55)",
               borderColor: "rgba(255,255,255,0.07)",
             }}
-            aria-label="Toggle theme"
+            aria-label={
+              lang === "es" ? "Cambiar tema" : "Toggle theme"
+            }
           >
             {theme === "dark" ? (
               <Sun size={16} strokeWidth={2} />
@@ -141,7 +143,15 @@ export function Navbar({ lang, currentPage }: NavbarProps) {
               color: "rgba(245,240,235,0.55)",
               borderColor: "rgba(255,255,255,0.07)",
             }}
-            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-label={
+              menuOpen
+                ? lang === "es"
+                  ? "Cerrar menú"
+                  : "Close menu"
+                : lang === "es"
+                  ? "Abrir menú"
+                  : "Open menu"
+            }
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
