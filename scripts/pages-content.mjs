@@ -1,9 +1,10 @@
 /**
  * Genera los módulos con el HTML de las landings de Masterclass y Speakers.
  *
- * El contenido se mantiene en `app/<pagina>/content.html` (fácil de editar) y
- * se transforma en un string exportado para que Next lo bundlee: así no hay
- * lecturas de disco en runtime ni problemas con el build standalone.
+ * El contenido se mantiene en `app/<pagina>/content.html` (ES) y
+ * `content.en.html` (EN), fácil de editar, y se transforma en un string
+ * exportado para que Next lo bundlee: así no hay lecturas de disco en runtime
+ * ni problemas con el build standalone.
  *
  * Corre solo antes de `dev` y `build`.
  */
@@ -19,9 +20,19 @@ const pages = [
     exportName: "masterclassHtml",
   },
   {
+    source: "app/masterclass/content.en.html",
+    target: "components/pages/masterclass-html-en.ts",
+    exportName: "masterclassHtmlEn",
+  },
+  {
     source: "app/speakers/content.html",
     target: "components/pages/speakers-html.ts",
     exportName: "speakersHtml",
+  },
+  {
+    source: "app/speakers/content.en.html",
+    target: "components/pages/speakers-html-en.ts",
+    exportName: "speakersHtmlEn",
   },
 ];
 

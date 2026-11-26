@@ -11,6 +11,10 @@ export const metadata = {
     "Masterclass presencial de The Rings Method® dictada por Flora Aracama y Nico Busso (Duo Rings). Fundamentos, fuerza y control en anillas para todos los niveles.",
   alternates: {
     canonical: "https://www.duo-rings.com/masterclass/",
+    languages: {
+      es: "https://www.duo-rings.com/masterclass/",
+      en: "https://www.duo-rings.com/en/masterclass/",
+    },
   },
 };
 
@@ -19,7 +23,7 @@ export default function MasterclassPage() {
     <div className="masterclass-page" data-theme="dark">
       <Navbar lang="es" currentPage="masterclass" />
       <MasterclassContent html={masterclassHtml} />
-      <MasterclassLogic />
+      <MasterclassLogic lang="es" />
       <Footer lang="es" />
     </div>
   );

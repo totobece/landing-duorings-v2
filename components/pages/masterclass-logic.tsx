@@ -1,45 +1,100 @@
 "use client";
 
 import { useEffect } from "react";
+import type { Lang } from "@/lib/data";
 
-/* Lógica interactiva de la landing de Masterclass.
+/* Lógica interactiva de la landing de Masterclass (ES/EN).
    El HTML se mantiene tal cual (es contenido editorial) y estas funciones
    quedan en window para los `onclick` / `onsubmit` del propio markup. */
 
-const levelsData = {
-  principiante: {
-    badge: "ENFOQUE · NIVEL PRINCIPIANTE",
-    duration: "Sin experiencia previa requerida",
-    title: "Fundamentos, Estabilidad Escapular y Confianza en Suspensión",
-    desc: "Aprenderás a regular la altura de las anillas según tu cuerpo, activar las cadenas estabilizadoras sin sobrecargar articulaciones y dominar los patrones básicos de empuje, tracción y movilidad articular consciente.",
-  },
-  intermedio: {
-    badge: "ENFOQUE · NIVEL INTERMEDIO",
-    duration: "Para practicantes activos y deportistas",
-    title: "Integración de Cadenas Musculares, Fuerza Funcional y Control",
-    desc: "Profundizaremos en transiciones fluidas, control del core en inestabilidad, descompresión articular activa y progresiones seguras para potenciar tu rendimiento en cualquier disciplina deportiva.",
-  },
-  avanzado: {
-    badge: "ENFOQUE · NIVEL AVANZADO",
-    duration: "Dominio corporal y alto rendimiento",
-    title: "Suspensión Aérea, Inversiones y Precisión Biomecánica",
-    desc: "Trabajarás secretos técnicos de 30 años en la élite gimnástica y artística: bloqueo articular fino, control en inversiones, transiciones aéreas y mindfulness aplicado a la máxima exigencia física.",
-  },
-} as const;
+type LevelKey = "principiante" | "intermedio" | "avanzado";
 
-type LevelKey = keyof typeof levelsData;
+type LevelCopy = {
+  badge: string;
+  duration: string;
+  title: string;
+  desc: string;
+};
 
-export function MasterclassLogic() {
+const levels: Record<Lang, Record<LevelKey, LevelCopy>> = {
+  es: {
+    principiante: {
+      badge: "ENFOQUE · NIVEL PRINCIPIANTE",
+      duration: "Sin experiencia previa requerida",
+      title: "Fundamentos, Estabilidad Escapular y Confianza en Suspensión",
+      desc: "Aprenderás a regular la altura de las anillas según tu cuerpo, activar las cadenas estabilizadoras sin sobrecargar articulaciones y dominar los patrones básicos de empuje, tracción y movilidad articular consciente.",
+    },
+    intermedio: {
+      badge: "ENFOQUE · NIVEL INTERMEDIO",
+      duration: "Para practicantes activos y deportistas",
+      title: "Integración de Cadenas Musculares, Fuerza Funcional y Control",
+      desc: "Profundizaremos en transiciones fluidas, control del core en inestabilidad, descompresión articular activa y progresiones seguras para potenciar tu rendimiento en cualquier disciplina deportiva.",
+    },
+    avanzado: {
+      badge: "ENFOQUE · NIVEL AVANZADO",
+      duration: "Dominio corporal y alto rendimiento",
+      title: "Suspensión Aérea, Inversiones y Precisión Biomecánica",
+      desc: "Trabajarás secretos técnicos de 30 años en la élite gimnástica y artística: bloqueo articular fino, control en inversiones, transiciones aéreas y mindfulness aplicado a la máxima exigencia física.",
+    },
+  },
+  en: {
+    principiante: {
+      badge: "FOCUS · BEGINNER LEVEL",
+      duration: "No previous experience required",
+      title: "Fundamentals, Scapular Stability and Confidence in Suspension",
+      desc: "You'll learn to adjust the ring height to your body, activate stabilizing chains without overloading your joints, and master the basic patterns of pushing, pulling and conscious joint mobility.",
+    },
+    intermedio: {
+      badge: "FOCUS · INTERMEDIATE LEVEL",
+      duration: "For active practitioners and athletes",
+      title: "Muscle Chain Integration, Functional Strength and Control",
+      desc: "We'll go deeper into fluid transitions, core control under instability, active joint decompression and safe progressions to boost your performance in any sport.",
+    },
+    avanzado: {
+      badge: "FOCUS · ADVANCED LEVEL",
+      duration: "Body mastery and high performance",
+      title: "Aerial Suspension, Inversions and Biomechanical Precision",
+      desc: "You'll work on technical secrets from 30 years in elite gymnastics and the arts: fine joint locking, control in inversions, aerial transitions and mindfulness applied to maximum physical demand.",
+    },
+  },
+};
+
+const levelNames: Record<Lang, Record<LevelKey, string>> = {
+  es: {
+    principiante: "Principiante",
+    intermedio: "Intermedio",
+    avanzado: "Avanzado",
+  },
+  en: {
+    principiante: "Beginner",
+    intermedio: "Intermediate",
+    avanzado: "Advanced",
+  },
+};
+
+const confirmation = {
+  es: {
+    heading: (name: string) => `¡Gracias, ${name}!`,
+    message: (level: string, city: string, email: string) =>
+      `Registramos tu pre-reserva para el nivel ${level} (Sede: ${city}). Enviamos los detalles y próximas fechas presenciales a ${email}.`,
+  },
+  en: {
+    heading: (name: string) => `Thank you, ${name}!`,
+    message: (level: string, city: string, email: string) =>
+      `We've registered your pre-reservation for the ${level} level (Location: ${city}). We'll send the details and upcoming in-person dates to ${email}.`,
+  },
+};
+
+export function MasterclassLogic({ lang }: { lang: Lang }) {
   useEffect(() => {
     const win = window as unknown as Record<string, unknown>;
-    let currentSelectedLevel = "Principiante";
+    let currentSelectedLevel = levelNames[lang].principiante;
 
     const selectLevel = (levelKey: LevelKey) => {
-      const data = levelsData[levelKey];
+      const data = levels[lang][levelKey];
       if (!data) return;
 
-      currentSelectedLevel =
-        levelKey.charAt(0).toUpperCase() + levelKey.slice(1);
+      currentSelectedLevel = levelNames[lang][levelKey];
 
       document.querySelectorAll(".level-btn").forEach((btn) => {
         btn.classList.remove("border-accentPink", "bg-accentPink", "text-pureBlack");
@@ -89,11 +144,16 @@ export function MasterclassLogic() {
         (document.getElementById("city") as HTMLSelectElement | null)?.value ??
         "";
 
+      const copy = confirmation[lang];
       const heading = document.getElementById("confirm-heading");
       const message = document.getElementById("confirm-message");
-      if (heading) heading.textContent = `¡Gracias, ${name}!`;
+      if (heading) heading.textContent = copy.heading(name);
       if (message) {
-        message.textContent = `Registramos tu pre-reserva para el nivel ${currentSelectedLevel} (Sede: ${city}). Enviamos los detalles y próximas fechas presenciales a ${email}.`;
+        message.textContent = copy.message(
+          currentSelectedLevel,
+          city,
+          email,
+        );
       }
 
       document.getElementById("reservation-form")?.classList.add("hidden");
@@ -120,7 +180,7 @@ export function MasterclassLogic() {
       delete win.handleFormSubmit;
       delete win.resetForm;
     };
-  }, []);
+  }, [lang]);
 
   return null;
 }

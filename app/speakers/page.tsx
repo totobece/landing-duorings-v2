@@ -9,6 +9,10 @@ export const metadata = {
     "Flora Aracama y Nico Busso (Duo Rings) como speakers: mente de emprendedor, cuerpo de atleta y alma de artista. Masterclass de alto rendimiento, liderazgo y bienestar.",
   alternates: {
     canonical: "https://www.duo-rings.com/speakers/",
+    languages: {
+      es: "https://www.duo-rings.com/speakers/",
+      en: "https://www.duo-rings.com/en/speakers/",
+    },
   },
 };
 

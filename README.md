@@ -14,13 +14,15 @@ Los idiomas se manejan con páginas HTML estáticas independientes, sin librerí
 
 ## Páginas independientes
 
-- `/masterclass/` — landing de la Masterclass presencial de The Rings Method.
-- `/speakers/` — página de speakers para contratación.
+- `/masterclass/` y `/en/masterclass/` — landing de la Masterclass presencial.
+- `/speakers/` y `/en/speakers/` — página de speakers para contratación.
 
 Son rutas de Next que reutilizan el mismo `Navbar` y `Footer` del home. El
-contenido editorial vive en `app/masterclass/content.html` y
-`app/speakers/content.html`; `npm run pages:content` lo convierte en módulos
-(`components/pages/*-html.ts`) y corre automáticamente antes de `dev` y `build`.
+selector EN/ES cambia de idioma manteniendo la página (`/masterclass/` ↔
+`/en/masterclass/`, `/speakers/` ↔ `/en/speakers/`). El contenido editorial vive
+en `app/masterclass/content*.html` y `app/speakers/content*.html`;
+`npm run pages:content` lo convierte en módulos (`components/pages/*-html.ts`) y
+corre automáticamente antes de `dev` y `build`.
 
 ## Scripts
 

@@ -20,6 +20,11 @@ export const pageLinks: NavItem[] = [
   { key: "speakers", href: "/speakers/" },
 ];
 
+/** URL de una página independiente según el idioma. */
+export function pageHref(lang: Lang, key: string) {
+  return lang === "es" ? `/${key}/` : `/en/${key}/`;
+}
+
 export const translations = {
   es: {
     nav: {

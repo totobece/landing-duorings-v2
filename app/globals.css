@@ -6,7 +6,9 @@
 
 /* Páginas de Masterclass y Speakers: sus clases viven en HTML propio. */
 @source "./masterclass/content.html";
+@source "./masterclass/content.en.html";
 @source "./speakers/content.html";
+@source "./speakers/content.en.html";
 
 /* Paleta y tracking de las landings de The Rings Method (antes en el
    tailwind.config del CDN). Se mantienen acá para que el HTML propio

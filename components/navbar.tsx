@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Sun, Moon, Menu, X } from "lucide-react";
-import { navItems, pageLinks, translations, Lang } from "@/lib/data";
+import { navItems, pageLinks, pageHref, translations, Lang } from "@/lib/data";
 import { useTheme } from "@/components/theme-provider";
 
 interface NavbarProps {
@@ -26,6 +26,10 @@ export function Navbar({ lang, currentPage }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
   const scrollTo = (selector: string) => {
     setMenuOpen(false);
     const el = document.querySelector(selector);
@@ -40,7 +44,11 @@ export function Navbar({ lang, currentPage }: NavbarProps) {
 
   const switchLang = () => {
     setMenuOpen(false);
-    router.push(`/${otherLang}`);
+    // En las páginas independientes se mantiene la página y solo cambia el
+    // idioma: /masterclass/ <-> /en/masterclass/. En el home, /es <-> /en.
+    router.push(
+      currentPage ? pageHref(otherLang, currentPage) : `/${otherLang}`,
+    );
   };
 
   const menuBackground = menuOpen
@@ -84,7 +92,7 @@ export function Navbar({ lang, currentPage }: NavbarProps) {
             return (
               <a
                 key={item.key}
-                href={item.href}
+                href={pageHref(lang, item.key)}
                 aria-current={active ? "page" : undefined}
                 className={`inline text-xs tracking-[0.15em] uppercase transition-colors duration-200 font-semibold hover:text-[var(--pink)] whitespace-nowrap ${
                   active ? "underline underline-offset-[6px]" : ""
@@ -173,7 +181,7 @@ export function Navbar({ lang, currentPage }: NavbarProps) {
             {pageLinks.map((item) => (
               <a
                 key={item.key}
-                href={item.href}
+                href={pageHref(lang, item.key)}
                 onClick={() => setMenuOpen(false)}
                 aria-current={currentPage === item.key ? "page" : undefined}
                 className={`text-xs tracking-[0.15em] uppercase font-semibold py-3 border-b transition-colors duration-200 hover:text-[var(--pink)] ${
