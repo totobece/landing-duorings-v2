@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Sun, Moon, Menu, X } from "lucide-react";
 import { navItems, pageLinks, pageHref, translations, Lang } from "@/lib/data";
@@ -18,7 +19,9 @@ export function Navbar({ lang, currentPage }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const t = translations[lang];
-  const otherLang = lang === "es" ? "en" : "es";
+
+  const languageHref = (target: Lang) =>
+    currentPage ? pageHref(target, currentPage) : `/${target}`;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -40,15 +43,6 @@ export function Navbar({ lang, currentPage }: NavbarProps) {
       // se navega al home en el idioma actual y se baja a la sección.
       router.push(`/${lang}${selector}`);
     }
-  };
-
-  const switchLang = () => {
-    setMenuOpen(false);
-    // En las páginas independientes se mantiene la página y solo cambia el
-    // idioma: /masterclass/ <-> /en/masterclass/. En el home, /es <-> /en.
-    router.push(
-      currentPage ? pageHref(otherLang, currentPage) : `/${otherLang}`,
-    );
   };
 
   const menuBackground = menuOpen
@@ -106,17 +100,40 @@ export function Navbar({ lang, currentPage }: NavbarProps) {
         </div>
 
         <div className="flex items-center gap-3">
-          <button
-            onClick={switchLang}
-            className="text-xs tracking-[0.15em] uppercase font-semibold transition-colors duration-200 hover:text-[var(--pink)] border rounded px-3 py-1.5"
-            style={{
-              color: "rgba(245,240,235,0.55)",
-              borderColor: "rgba(255,255,255,0.07)",
-            }}
-            aria-label={otherLang === "en" ? "Switch to English" : "Cambiar a español"}
+          <div
+            role="group"
+            aria-label={lang === "es" ? "Idioma" : "Language"}
+            className="flex items-center rounded border overflow-hidden"
+            style={{ borderColor: "rgba(255,255,255,0.07)" }}
           >
-            {otherLang.toUpperCase()}
-          </button>
+            {(["es", "en"] as const).map((target) => {
+              const active = target === lang;
+              return (
+                <Link
+                  key={target}
+                  href={languageHref(target)}
+                  onClick={() => setMenuOpen(false)}
+                  aria-current={active ? "page" : undefined}
+                  aria-label={
+                    target === "es" ? "Ver en español" : "View in English"
+                  }
+                  title={target === "es" ? "Español" : "English"}
+                  className={`px-2.5 py-1.5 text-[11px] font-semibold tracking-[0.12em] uppercase transition-colors duration-200 ${
+                    active
+                      ? ""
+                      : "text-[rgba(245,240,235,0.6)] hover:text-[var(--pink)]"
+                  }`}
+                  style={
+                    active
+                      ? { color: "#0a0a0a", background: "var(--pink)" }
+                      : undefined
+                  }
+                >
+                  {target.toUpperCase()}
+                </Link>
+              );
+            })}
+          </div>
 
           <button
             onClick={toggleTheme}
